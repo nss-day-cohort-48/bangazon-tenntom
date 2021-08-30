@@ -18,3 +18,4 @@ VALUES (null, 4, 7, 1)
 
 SELECT * FROM bangazonapi_productrating
 
+DROP TABLE bangazonapi_rating;

@@ -67,7 +67,7 @@ class Product(SafeDeleteModel):
             avg = total_rating / len(ratings)
 
         else:
-            avg = 0
+            avg = "NAV"
             
         return avg
 
