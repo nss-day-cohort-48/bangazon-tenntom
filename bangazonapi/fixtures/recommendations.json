@@ -1,0 +1,9 @@
+{
+    "model": "bangazonapi.recommendation",
+    "pk": 3,
+    "fields": {
+        "product": 50,
+        "customer_id": 5,
+        "rating": 3
+    }
+},

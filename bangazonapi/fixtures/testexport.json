@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "rating": 4,
+    "customer_id": 4,
+    "product_id": 50
+  },
+  {
+    "id": 2,
+    "rating": 3,
+    "customer_id": 5,
+    "product_id": 50
+  },
+  {
+    "id": 3,
+    "rating": 5,
+    "customer_id": 6,
+    "product_id": 50
+  },
+  {
+    "id": 4,
+    "rating": 1,
+    "customer_id": 7,
+    "product_id": 50
+  },
+  {
+    "id": 5,
+    "rating": 5,
+    "customer_id": 6,
+    "product_id": 1
+  },
+  {
+    "id": 6,
+    "rating": 4,
+    "customer_id": 7,
+    "product_id": 1
+  }
+]
