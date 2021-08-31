@@ -58,18 +58,19 @@ class Product(SafeDeleteModel):
             number -- The average rating for the product
         """
         ratings = ProductRating.objects.filter(product=self)
-        total_rating = 0
-        for rating in ratings:
-            total_rating += rating.rating
 
-        if total_rating > 0:
+        try:
+            total_rating = 0
+            for rating in ratings:
+                total_rating += rating.rating
 
             avg = total_rating / len(ratings)
 
-        else:
-            avg = "NAV"
+            return avg
+
+        except ZeroDivisionError:
+            return "NAV"
             
-        return avg
 
 
     class Meta:
