@@ -16,6 +16,11 @@ VALUES (null, 5, 6, 1)
 INSERT INTO bangazonapi_productrating
 VALUES (null, 4, 7, 1)
 
-SELECT * FROM bangazonapi_productrating
+SELECT * FROM bangazonapi_customer
+
+SELECT * FROM authtoken_token
+
+SELECT * FROM auth_user
 
 DROP TABLE bangazonapi_rating;
+

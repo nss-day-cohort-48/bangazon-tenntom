@@ -34,8 +34,8 @@ class Customers(ViewSet):
             HTTP/1.1 204 No Content
         """
         customer = Customer.objects.get(user=request.auth.user)
-        customer.user.last_name = request.data["last_name"]
-        customer.user.email = request.data["email"]
+        customer.last_name = request.data["last_name"]
+        customer.email = request.data["email"]
         customer.address = request.data["address"]
         customer.phone_number = request.data["phone_number"]
         customer.user.save()
