@@ -45,12 +45,14 @@ class PaymentTests(APITestCase):
 
     def test_delete_payment_type(self):
         """Make sure we can remove payment types"""
+        #I am getting a 500 error message rather than 404 and not sure why.
 
         payment = Payment()
         payment.merchant_name = "American Express"
         payment.account_number = "111-1111-1111"
         payment.expiration_date = "2024-12-31"
         payment.create_date = str(datetime.date.today())
+        payment.customer_id = 1
 
         payment.save()
 
