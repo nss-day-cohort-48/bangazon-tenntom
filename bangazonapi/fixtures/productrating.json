@@ -34,5 +34,23 @@
             "customer": 7,
             "rating": 1
         }
+    },
+    {
+        "model": "bangazonapi.productrating",
+        "pk": 5,
+        "fields": {
+            "product": 1,
+            "customer": 6,
+            "rating": 5
+        }
+    },
+    {
+        "model": "bangazonapi.productrating",
+        "pk": 6,
+        "fields": {
+            "product": 1,
+            "customer": 7,
+            "rating": 4
+        }
     }
 ]
