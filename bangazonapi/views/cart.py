@@ -112,11 +112,11 @@ class Cart(ViewSet):
             open_order = Order.objects.get(
                 customer=current_user, payment_type=None)
 
-            products_on_order = Product.objects.filter(
-                lineitems__order=open_order)
+            # products_on_order = Product.objects.filter(
+            #     lineitems__order=open_order)
 
-            serialized_order = OrderSerializer(
-                open_order, many=False, context={'request': request})
+            # serialized_order = OrderSerializer(
+            #     open_order, many=False, context={'request': request})
 
             product_list = ProductSerializer(
                 products_on_order, many=True, context={'request': request})
@@ -124,7 +124,7 @@ class Cart(ViewSet):
             final = {
                 "order": serialized_order.data
             }
-            final["order"]["products"] = product_list.data
+            final["products"] = product_list.data
             final["order"]["size"] = len(products_on_order)
 
         except Order.DoesNotExist as ex:
