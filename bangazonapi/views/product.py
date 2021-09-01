@@ -246,6 +246,7 @@ class Products(ViewSet):
 
         # Support filtering by category and/or quantity
         category = self.request.query_params.get('category', None)
+        location = self.request.query_params.get('location', None)
         quantity = self.request.query_params.get('quantity', None)
         order = self.request.query_params.get('order_by', None)
         direction = self.request.query_params.get('direction', None)
@@ -273,6 +274,9 @@ class Products(ViewSet):
                 return False
 
             products = filter(sold_filter, products)
+        
+        if location is not None:
+            products = products.filter(location__contains=location)
 
         serializer = ProductSerializer(
             products, many=True, context={'request': request})
