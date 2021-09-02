@@ -104,7 +104,10 @@ class Orders(ViewSet):
         """
         customer = Customer.objects.get(user=request.auth.user)
         order = Order.objects.get(pk=pk, customer=customer)
-        order.payment_type = request.data["payment_type"]
+        order_payment = Payment.objects.get(pk=request.data["payment_type_id"])
+        order.payment_type = order_payment
+        # order_products = Product.objects.get(pk=request.data['product_id'])
+        # order.products = order_products
         order.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
