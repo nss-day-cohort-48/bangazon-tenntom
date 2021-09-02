@@ -6,7 +6,7 @@ from bangazonapi.models import Payment, customer
 
 
 class PaymentTests(APITestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         """
         Create a new account and create sample category
         """
@@ -17,6 +17,18 @@ class PaymentTests(APITestCase):
         json_response = json.loads(response.content)
         self.token = json_response["token"]
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+
+        payment = Payment()
+        payment.merchant_name = "Mastercard"
+        payment.account_number = "211-1111-1111"
+        payment.expiration_date = "2025-12-31"
+        payment.create_date = str(datetime.date.today())
+        payment.customer_id = 1
+
+        payment.save()
+
+
 
 
     def test_create_payment_type(self):
@@ -31,7 +43,7 @@ class PaymentTests(APITestCase):
             "expiration_date": "2024-12-31",
             "create_date": datetime.date.today()
         }
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        
         response = self.client.post(url, data, format='json')
         json_response = json.loads(response.content)
 
@@ -45,23 +57,14 @@ class PaymentTests(APITestCase):
 
     def test_delete_payment_type(self):
         """Make sure we can remove payment types"""
-        #I am getting a 500 error message rather than 404 and not sure why.
+   
+        # self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
 
-        payment = Payment()
-        payment.merchant_name = "American Express"
-        payment.account_number = "111-1111-1111"
-        payment.expiration_date = "2024-12-31"
-        payment.create_date = str(datetime.date.today())
-        payment.customer_id = 1
-
-        payment.save()
-
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
-        response = self.client.delete(f"/paymenttypes/{payment.id}")
+        response = self.client.delete(f"/paymenttypes/1")
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-        # GET GAME AGAIN TO VERIFY 404 response
-        response = self.client.get(f"/paymenttypes/{payment.id}")
+        # GET PAYMENT AGAIN TO VERIFY 404 response
+        response = self.client.get(f"/paymenttypes/1")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
 
