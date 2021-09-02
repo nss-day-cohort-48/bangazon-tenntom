@@ -247,6 +247,7 @@ class Products(ViewSet):
         # Support filtering by category and/or quantity
         category = self.request.query_params.get('category', None)
         location = self.request.query_params.get('location', None)
+        price = self.request.query_params.get('price', None)
         quantity = self.request.query_params.get('quantity', None)
         order = self.request.query_params.get('order_by', None)
         direction = self.request.query_params.get('direction', None)
@@ -274,6 +275,14 @@ class Products(ViewSet):
                 return False
 
             products = filter(sold_filter, products)
+
+        if price is not None:
+            def min_price(product):
+                if product.price >= float(price):
+                    return True
+                return False
+
+            products = filter(min_price, products)
         
         if location is not None:
             products = products.filter(location__contains=location)
