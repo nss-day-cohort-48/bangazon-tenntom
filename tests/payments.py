@@ -57,8 +57,6 @@ class PaymentTests(APITestCase):
 
     def test_delete_payment_type(self):
         """Make sure we can remove payment types"""
-   
-        # self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
 
         response = self.client.delete(f"/paymenttypes/1")
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
